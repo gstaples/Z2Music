@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Z2Music</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="button_on">Favorites</string>
+    <string name="button_pandora">Pandora</string>
+    <string name="button_back">Menu</string>
+    <string name="button_up">Up</string>
+    <string name="button_down">Down</string>
+    <string name="button_right">Select</string>
+
+    <string name="button_off">Off</string>
+    <string name="button_irpplay">Play</string>
+
+    <string name="ipaddr">192.168.42.107</string>
+    <string name="port">80</string>
+
+    <string name="z2pwroff">MainZone/index.put.asp?cmd0=PutZone_OnOff/OFF&amp;ZoneName=ZONE2</string>
+    <string name="z2pwron">MainZone/index.put.asp?cmd0=PutZone_OnOff/ON&amp;ZoneName=ZONE2</string>
+    <string name="z2irpplay">NetAudio/index.put.asp?cmd0=PutNetAudioCommand/CurRight&amp;ZoneName=ZONE2</string>
+    <string name="z2irpstop">NetAudio/index.put.asp?cmd0=PutNetAudioCommand/CmdStop</string>
+
+
+
+</resources>

@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/edit_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/app_name" />
+
+    <Button
+        android:id="@+id/button_on"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/edit_message"
+        android:onClick="irp_on"
+        android:text="@string/button_on" />
+
+    <Button
+        android:id="@+id/button_pandora"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_message"
+        android:layout_toRightOf="@id/button_on"
+        android:onClick="irp_pandora"
+        android:text="@string/button_pandora" />
+
+    <Button
+        android:id="@+id/button_off"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/edit_message"
+        android:onClick="irp_off"
+        android:text="@string/button_off" />
+
+    <!-- new row -->
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/button_on"
+        android:onClick="irp_back"
+        android:text="@string/button_back" />
+
+    <Button
+        android:id="@+id/button_up"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/button_back"
+        android:onClick="irp_up"
+        android:layout_below="@id/button_on"
+        android:text="@string/button_up" />
+
+    <Button
+        android:id="@+id/button_down"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/button_up"
+        android:onClick="irp_down"
+        android:layout_below="@id/button_on"
+        android:text="@string/button_down" />
+
+    <Button
+        android:id="@+id/button_right"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/button_down"
+        android:layout_below="@id/button_on"
+        android:onClick="irp_right"
+        android:text="@string/button_right" />
+
+    />
+
+</RelativeLayout>
+
+
