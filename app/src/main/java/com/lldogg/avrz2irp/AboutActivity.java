@@ -25,17 +25,17 @@ public class AboutActivity extends ActionBarActivity {
         String version;
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_META_DATA);
-            version = Integer.toString(pInfo.versionCode) + " ("+ pInfo.versionName + ")";
+            version = pInfo.versionName + " (versionCode: " + Integer.toString(pInfo.versionCode)+ ")";
         } catch (PackageManager.NameNotFoundException e1) {
             version = "Unknown";
         }
 
         TextView about_output = (TextView) findViewById(R.id.about_output);
-        about_output.setText("Written by Garrick Staples, garrick.staples@gmail.com, Copyright 2015.\n");
+        about_output.setText(this.getString(R.string.app_name) + " is written by Garrick Staples, garrick.staples@gmail.com, Copyright 2015.\n");
         about_output.append("This is version " + version +".\n");
         about_output.append("\n" + this.getString(R.string.app_name) + " is for very quickly playing Internet Radio and Pandora on Zone2 of Marantz and Denon receivers. It does not replace the full-featured official apps or AVR-Remote. It was extensively tested with a Marantz NR-1605. Please let me know if this app works for your receiver.\n");
-        about_output.append("\nYou must set your receiver's IP in the settings. Please use the built-in scanner to find it. (Seriously, use the scanner. It took me 3 days to write the damn thing just so you don't have to type an IP address!)\n");
-        about_output.append("\nGarrick Staples and this app are not affiliated with Marantz, Denon, D+M Group, or Pandora in any way. I assume all of those capitalized names are copyrighted and/or trademarked by their respective owners, or not, IANAL.");
+        about_output.append("\n" + this.getString(R.string.app_name) + " requires your receiver's IP in the settings. Please use the built-in scanner to find it. (Seriously, use the scanner. It took me 3 days to write the damn thing just so you don't have to type an IP address!)\n");
+        about_output.append("\n" + this.getString(R.string.app_name) + " and Garrick Staples are not affiliated with Marantz, Denon, D+M Group, or Pandora in any way. I assume all of those capitalized names are copyrighted and/or trademarked by their respective owners, or not, IANAL.");
     }
 
     @Override

@@ -1,32 +1,8 @@
 apply plugin: 'com.android.application'
 
-def getVersionCode = { ->
-    try {
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'rev-list', '--first-parent', '--count', 'master'
-            standardOutput = stdout
-        }
-        return Integer.parseInt(stdout.toString().trim())
-    }
-    catch (ignored) {
-        return -1;
-    }
-}
 
-def getVersionName = { ->
-    try {
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'describe', '--tags', '--dirty'
-            standardOutput = stdout
-        }
-        return stdout.toString().trim()
-    }
-    catch (ignored) {
-        return null;
-    }
-}
+
+
 android {
     signingConfigs {
         config {
@@ -39,18 +15,32 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
     defaultConfig {
+        // Fetch the version according to git latest tag and "how far are we from last tag"
+        def longVersionName = "git -C ${rootDir} describe --tags --long".execute().text.trim()
+        def (fullVersionTag, versionBuild, gitSha) = longVersionName.tokenize('-')
+        def(versionMajor, versionMinor, versionPatch) = fullVersionTag.tokenize('.')
+
         applicationId "com.lldogg.avrz2irp"
         minSdkVersion 15
         targetSdkVersion 21
-        versionCode getVersionCode()
-        versionName getVersionName()
+        versionName "$versionMajor.$versionMinor.$versionPatch-$versionBuild"
+        versionCode versionMajor.toInteger() * 100000 +
+                versionMinor.toInteger() * 10000 +
+                versionPatch.toInteger() * 1000 +
+                versionBuild.toInteger()
     }
     buildTypes {
         release {
             minifyEnabled true
             proguardFile getDefaultProguardFile('proguard-android.txt')
             signingConfig signingConfigs.config
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-release", "Z2Music-" + defaultConfig.versionCode + "-" + defaultConfig.versionName))
+                }
+            }
         }
+
     }
 
 }

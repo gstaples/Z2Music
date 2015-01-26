@@ -144,7 +144,14 @@ public class MainActivity extends ActionBarActivity {
             startActivity(AboutIntent);
             return true;
         }
-
+         if (id == R.id.action_favorites) {
+            action_favorites();
+            return true;
+        }
+        if (id == R.id.action_pandora) {
+            action_pandora();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -202,6 +209,18 @@ public class MainActivity extends ActionBarActivity {
         return "http://" + ipaddr + ":" + port + cmd;
     }
 
+    public void action_favorites() {
+
+        new sendcmd().execute(makeUrl(z2pwron),
+                makeUrl(z2irpfav),
+                makeUrl(z2irpCurRight));
+    }
+
+    public void action_pandora() {
+
+        new sendcmd().execute(makeUrl(z2pwron),
+                makeUrl(z2irppand));
+    }
     public void irp_favorites(View view) {
 
         view.startAnimation(animAlpha2);
@@ -225,7 +244,11 @@ public class MainActivity extends ActionBarActivity {
         new sendcmd().execute(makeUrl(z2irpstop),
                 makeUrl(z2pwroff));
     }
+    void irp_power_toggle() {
 
+        new sendcmd().execute(makeUrl(z2irpstop),
+                makeUrl(z2pwroff));
+    }
     void irp_poweron(View view) {
         view.startAnimation(animAlpha2);
 
@@ -352,6 +375,8 @@ public class MainActivity extends ActionBarActivity {
 
             LinearLayout navLayout = (LinearLayout) findViewById(R.id.navLayout);
             LinearLayout volLayout = (LinearLayout) findViewById(R.id.volLayout);
+            LinearLayout shortCutLayout = (LinearLayout) findViewById(R.id.shortCutLayout);
+
 
             // I don't want to maintain multiple layout xml files. That's obnoxious.
             // I should probably put all of this in a function or something, but meh.
@@ -365,6 +390,7 @@ public class MainActivity extends ActionBarActivity {
             //System.out.printf(" width: %f, height: %f, density: %f\n",width,height,density);
 
             boolean ShowVolumeOrNot;
+            boolean ShowShortcutsOrNot;
             boolean IsVolumeCompact;
             boolean UseLargeText;
 
@@ -375,24 +401,27 @@ public class MainActivity extends ActionBarActivity {
                     ShowVolumeOrNot=true;
                     IsVolumeCompact=true;
                     UseLargeText=false;
+                    ShowShortcutsOrNot=true;
                 } else if ((getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE) &&
                         (height < 600)) {
-                    // small screen, landscape, no volume controls
-                    ShowVolumeOrNot=false;
+                    // small screen, landscape, full volume controls, but hide showrtcuts
+                    ShowVolumeOrNot=true;
                     IsVolumeCompact=false;
                     UseLargeText=false;
-
+                    ShowShortcutsOrNot=false;
                 } else if ((getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT) &&
                         (width >= 600)) {
                     // larger screen, portrait, full volume controls
                     ShowVolumeOrNot=true;
                     IsVolumeCompact=false;
                     UseLargeText=true;
+                    ShowShortcutsOrNot=true;
                 } else {
                     // larger screen, landscape, full volume controls
                     ShowVolumeOrNot=true;
                     IsVolumeCompact=false;
                     UseLargeText=true;
+                    ShowShortcutsOrNot=true;
                 }
 
             if (!show_volume_controls) {
@@ -438,6 +467,12 @@ public class MainActivity extends ActionBarActivity {
                         volLayout.setVisibility(View.GONE);
                     }
 
+                    if (ShowShortcutsOrNot) {
+                        shortCutLayout.setVisibility(View.VISIBLE);
+                    } else {
+                        shortCutLayout.setVisibility(View.GONE);
+
+                    }
 
                     if (values[0].get("MASTERVOLUME") != null) {
                         String volstring = values[0].get("MASTERVOLUME").replaceAll("\\s","");
@@ -485,10 +520,8 @@ public class MainActivity extends ActionBarActivity {
 
                 //System.out.printf("%s", values[0].get("OUTPUT"));
                 if (UseLargeText) {
-                    //textView.setTextSize(25);.TextAppearance.DeviceDefault.Medium
                     textView.setTextAppearance(context,R.style.Base_TextAppearance_AppCompat_Large);
                 } else {
-                    //textView.setTextSize(15);
                     textView.setTextAppearance(context,R.style.Base_TextAppearance_AppCompat_Small);
 
                 }
