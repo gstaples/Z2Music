@@ -23,7 +23,7 @@
     <string name="title_activity_marantz_scanner">MarantzScanner</string>
     <string name="action_settings">Settings</string>
     <string name="button_receiverscanner">Scan Network for Receivers …</string>
-    <string name="title_activity_no_network">NoNetwork</string>
+    <string name="title_activity_no_network">Connection Failed</string>
     <string name="no_network">Can\'t open stream to receiver.
 -Wifi enabled?
 -Correct receiver IP in the settings?

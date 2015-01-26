@@ -1,5 +1,6 @@
 package com.lldogg.avrz2irp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,9 +32,15 @@ public class NoNetwork extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
             return true;
         }
-
+        if (id == R.id.action_about) {
+            Intent AboutIntent = new Intent(this, AboutActivity.class);
+            startActivity(AboutIntent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }
