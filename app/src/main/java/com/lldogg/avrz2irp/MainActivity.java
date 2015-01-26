@@ -313,7 +313,9 @@ public class MainActivity extends ActionBarActivity {
                 try {
                     Thread.sleep(statussleeptime);
                 } catch (InterruptedException e) {
+                    // whatever, don't care
                 }
+
                 if (isCancelled()) {
                     results.put("OUTPUT", "");
                     publishProgress(results);
@@ -330,6 +332,9 @@ public class MainActivity extends ActionBarActivity {
                         stream = u1.openStream();
                     } catch (Exception e) {
 
+                        Intent refresh = new Intent(context, NoNetwork.class);
+                        startActivity(refresh);
+
                         results.put("OUTPUT", "Can't open stream to receiver. \n-Wifi enabled?\n-Correct receiver IP in the settings?\n");
                         publishProgress(results);
                         return(1);
@@ -339,18 +344,15 @@ public class MainActivity extends ActionBarActivity {
                     publishProgress(results);
 
                     if ((results.get("POWER") != null) && (results.get("POWER").equals("ON"))) {
+                        // zone2 is powered on, fetch the player output
                         URL u2 = new URL(url);
                         stream = u2.openStream();
                         results = MyXMLparser.parse(stream, MyXMLparser.XMLP_PLAYEROUTPUT);
                         stream.close();
                         publishProgress(results);
 
-                    } else {
-                        results.put("OUTPUT", "Power is Off\n\nHere's an idea...\n" +
-                                "Push one of the giant buttons below!\n");
-                        publishProgress(results);
-
                     }
+
                 } catch (XmlPullParserException e) {
                     System.out.printf("%s", "XML Exception\n");
                     results.put("OUTPUT", "XML parse failed " + seconds);
@@ -510,6 +512,8 @@ public class MainActivity extends ActionBarActivity {
 
                     navLayout.setVisibility(View.INVISIBLE);
                     volLayout.setVisibility(View.INVISIBLE);
+                    textView.setText("Power is Off\n\nHere's an idea...\n" +
+                            "Push one of the giant buttons below!\n");
                 }
 
             } else if (values[0].get("OUTPUT") != null)  {
