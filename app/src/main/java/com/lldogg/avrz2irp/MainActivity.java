@@ -309,6 +309,9 @@ public class MainActivity extends ActionBarActivity {
                 if ((!isConnectedViaWifi() && (!Build.PRODUCT.matches(".*_?sdk_?.*")))) {
                     results.put("OUTPUT", "Wifi is not enabled.");
                     publishProgress(results);
+                    Intent refresh = new Intent(context, MainActivity.class);
+                    startActivity(refresh);//Start the same Activity
+                    finish(); //finish Activity.
                     return (0);
                 }
                 Calendar c = Calendar.getInstance();
@@ -323,7 +326,7 @@ public class MainActivity extends ActionBarActivity {
                     publishProgress(results);
                     return (0);
                 }
-                
+
                 //System.out.printf("%s (sleeptime: %d)\n", "calling status downloader", statussleeptime);
 
                 try {
