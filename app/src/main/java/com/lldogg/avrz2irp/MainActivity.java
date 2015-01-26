@@ -323,6 +323,7 @@ public class MainActivity extends ActionBarActivity {
                     publishProgress(results);
                     return (0);
                 }
+                
                 //System.out.printf("%s (sleeptime: %d)\n", "calling status downloader", statussleeptime);
 
                 try {
