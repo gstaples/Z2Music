@@ -306,14 +306,7 @@ public class MainActivity extends ActionBarActivity {
             Hashtable<String, String> results = new Hashtable<>();
 
             while (!isCancelled()) {
-                if ((!isConnectedViaWifi() && (!Build.PRODUCT.matches(".*_?sdk_?.*")))) {
-                    results.put("OUTPUT", "Wifi is not enabled.");
-                    publishProgress(results);
-                    Intent refresh = new Intent(context, MainActivity.class);
-                    startActivity(refresh);//Start the same Activity
-                    finish(); //finish Activity.
-                    return (0);
-                }
+
                 Calendar c = Calendar.getInstance();
                 int seconds = c.get(Calendar.SECOND);
 
@@ -327,6 +320,14 @@ public class MainActivity extends ActionBarActivity {
                     return (0);
                 }
 
+                if ((!isConnectedViaWifi() && (!Build.PRODUCT.matches(".*_?sdk_?.*")))) {
+                    results.put("OUTPUT", "Wifi is not enabled.");
+                    publishProgress(results);
+                    // Intent refresh = new Intent(context, MainActivity.class);
+                    // startActivity(refresh);//Start the same Activity
+                    // finish(); //finish Activity.
+                    return (0);
+                }
                 //System.out.printf("%s (sleeptime: %d)\n", "calling status downloader", statussleeptime);
 
                 try {
