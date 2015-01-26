@@ -1,0 +1,61 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    <PreferenceCategory
+        android:key="pref_key_storage_settings"
+        android:title="Main Settings">
+        <EditTextPreference
+            android:defaultValue="Not set yet"
+            android:inputType="text"
+            android:key="pref_ipaddr"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_ipaddr_name" />
+        <Preference
+            android:key="scanNowButton"
+            android:layout="@layout/scannerlayout" />
+        <EditTextPreference
+            android:defaultValue="@string/pref_port_def"
+            android:inputType="number"
+            android:key="pref_port"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_port_name" />
+        <EditTextPreference
+            android:inputType="number"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:visibility="invisible" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_key_storage_settings"
+        android:title="UI Settings">
+        <EditTextPreference
+            android:defaultValue="@string/pref_sleeptime_def"
+            android:inputType="number"
+            android:key="pref_sleeptime"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_sleeptime_name" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_showvolume"
+            android:title="@string/pref_showvolume" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_showfavorites"
+            android:title="@string/pref_showfavorites" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_showpandora"
+            android:title="@string/pref_showpandora" />
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

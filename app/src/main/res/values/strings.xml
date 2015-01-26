@@ -2,27 +2,26 @@
 <resources>
 
     <string name="app_name">Z2Music</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="button_on">Favorites</string>
-    <string name="button_pandora">Pandora</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_about">About</string>
     <string name="button_back">Menu</string>
     <string name="button_up">Up</string>
     <string name="button_down">Down</string>
     <string name="button_right">Select</string>
-
-    <string name="button_off">Off</string>
-    <string name="button_irpplay">Play</string>
-
-    <string name="ipaddr">192.168.42.107</string>
-    <string name="port">80</string>
-
-    <string name="z2pwroff">MainZone/index.put.asp?cmd0=PutZone_OnOff/OFF&amp;ZoneName=ZONE2</string>
-    <string name="z2pwron">MainZone/index.put.asp?cmd0=PutZone_OnOff/ON&amp;ZoneName=ZONE2</string>
-    <string name="z2irpplay">NetAudio/index.put.asp?cmd0=PutNetAudioCommand/CurRight&amp;ZoneName=ZONE2</string>
-    <string name="z2irpstop">NetAudio/index.put.asp?cmd0=PutNetAudioCommand/CmdStop</string>
-
-
+    <string name="button_mute">Mute</string>
+    <string name="button_voldown"> - </string>
+    <string name="button_volup"> + </string>
+    <string name="pref_ipaddr_name">Receiver\'s IP Address</string>
+    <string name="pref_port_name">Receiver\'s Port Number</string>
+    <string name="pref_sleeptime_name">Display Refresh (ms)</string>
+    <string name="pref_ipaddr_def">192.168.42.107</string>
+    <string name="pref_port_def">80</string>
+    <string name="pref_sleeptime_def">500</string>
+    <string name="pref_showpandora">Show Pandora</string>
+    <string name="pref_showfavorites">Show Favorites</string>
+    <string name="pref_showvolume">Show Volume Controls</string>
+    <string name="title_activity_marantz_scanner">MarantzScanner</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_receiverscanner">Scan Network for Receivers …</string>
 
 </resources>

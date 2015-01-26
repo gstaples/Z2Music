@@ -1,81 +1,235 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_view_rounded_single"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/edit_message"
+    <!-- status and power button layout -->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/app_name" />
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button_on"
-        android:layout_width="100dp"
+        <TextView
+            android:id="@+id/edit_message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:hint="@string/app_name" />
+
+        <Button
+            android:id="@+id/button_power"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:enabled="false"
+            android:onClick="irp_poweroff" />
+    </RelativeLayout>
+
+
+    <!-- navigation layout -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/navLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/edit_message"
-        android:onClick="irp_on"
-        android:text="@string/button_on" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button_pandora"
-        android:layout_width="100dp"
+        <Button
+            android:id="@+id/button_back"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/styled_button"
+            android:enabled="false"
+            android:onClick="irp_back"
+            android:text="@string/button_back" />
+
+        <ImageButton
+            android:id="@+id/button_up"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/styled_button"
+            android:enabled="false"
+            android:onClick="irp_up"
+            android:src="@drawable/ic_action_collapse" />
+
+        <ImageButton
+            android:id="@+id/button_down"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/styled_button"
+            android:enabled="false"
+            android:onClick="irp_down"
+            android:src="@drawable/ic_action_expand" />
+
+        <ImageButton
+            android:id="@+id/button_right"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/styled_button"
+            android:enabled="false"
+            android:onClick="irp_right"
+            android:src="@drawable/ic_action_next_item" />
+
+    </LinearLayout>
+
+
+    <!-- volume display layout *unused* -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="35dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/vol_level"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <!-- volume layout -->
+    <LinearLayout
+        android:id="@+id/volLayout"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edit_message"
-        android:layout_toRightOf="@id/button_on"
-        android:onClick="irp_pandora"
-        android:text="@string/button_pandora" />
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/background_view_rounded_single"
+        android:orientation="vertical"
+        android:visibility="invisible">
 
-    <Button
-        android:id="@+id/button_off"
-        android:layout_width="100dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Volume"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/background_view_rounded_single"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+
+            <ImageButton
+                android:id="@+id/button_mute"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="2"
+                android:background="@drawable/styled_button"
+                android:enabled="true"
+                android:onClick="irp_mute"
+                android:src="@drawable/ic_action_volume_on" />
+
+            <Button
+                android:id="@+id/button_voldown"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="2"
+                android:background="@drawable/styled_button"
+                android:enabled="true"
+                android:onClick="irp_voldown"
+                android:text="@string/button_voldown"
+                android:textSize="@dimen/abc_text_size_display_1_material"
+                android:visibility="gone" />
+
+            <SeekBar
+                android:id="@+id/seek1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="8"
+                android:progress="20"
+                android:progressDrawable="@drawable/progressbar"
+                android:secondaryProgress="20" />
+
+            <Button
+                android:id="@+id/button_volup"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/styled_button"
+                android:enabled="true"
+                android:onClick="irp_volup"
+                android:text="@string/button_volup"
+                android:textSize="@dimen/abc_text_size_display_1_material"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- main shortcuts layout -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/edit_message"
-        android:onClick="irp_off"
-        android:text="@string/button_off" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        tools:context=".MainActivity">
 
-    <!-- new row -->
-    <Button
-        android:id="@+id/button_back"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/button_on"
-        android:onClick="irp_back"
-        android:text="@string/button_back" />
+        <Button
+            android:id="@+id/button_favorite"
+            android:layout_width="125dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/styled_button"
+            android:onClick="irp_favorites"
+            android:text="Favorites"
+            android:visibility="gone" />
 
-    <Button
-        android:id="@+id/button_up"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/button_back"
-        android:onClick="irp_up"
-        android:layout_below="@id/button_on"
-        android:text="@string/button_up" />
+        <Button
+            android:id="@+id/button_pandora"
+            android:layout_width="125dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/styled_button"
+            android:onClick="irp_pandora"
+            android:text="Pandora"
+            android:visibility="gone" />
 
-    <Button
-        android:id="@+id/button_down"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/button_up"
-        android:onClick="irp_down"
-        android:layout_below="@id/button_on"
-        android:text="@string/button_down" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/button_right"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/button_down"
-        android:layout_below="@id/button_on"
-        android:onClick="irp_right"
-        android:text="@string/button_right" />
-
-    />
-
-</RelativeLayout>
+</LinearLayout>
 
 
