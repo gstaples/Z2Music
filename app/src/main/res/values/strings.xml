@@ -20,7 +20,7 @@
     <string name="pref_showpandora">Show Pandora</string>
     <string name="pref_showfavorites">Show Favorites</string>
     <string name="pref_showvolume">Show Volume Controls</string>
-    <string name="title_activity_marantz_scanner">MarantzScanner</string>
+    <string name="title_activity_marantz_scanner">Looking &#8230;</string>
     <string name="action_settings">Settings</string>
     <string name="button_receiverscanner">Scan Network for Receivers …</string>
     <string name="title_activity_no_network">Connection Failed</string>
