@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -304,7 +306,7 @@ public class MainActivity extends ActionBarActivity {
             Hashtable<String, String> results = new Hashtable<>();
 
             while (!isCancelled()) {
-                if ((getWifiDhcpInfo() == null && (!Build.PRODUCT.matches(".*_?sdk_?.*")))) {
+                if ((!isConnectedViaWifi() && (!Build.PRODUCT.matches(".*_?sdk_?.*")))) {
                     results.put("OUTPUT", "Wifi is not enabled.");
                     publishProgress(results);
                     return (0);
@@ -645,6 +647,12 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return myWifiManager.getDhcpInfo();
+    }
+
+    private boolean isConnectedViaWifi() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        return mWifi.isConnected();
     }
 
 
