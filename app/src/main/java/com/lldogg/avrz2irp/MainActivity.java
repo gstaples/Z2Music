@@ -315,19 +315,11 @@ public class MainActivity extends ActionBarActivity {
                 } catch (InterruptedException e) {
                 }
                 if (isCancelled()) {
-                    results.put("OUTPUT", "Refreshing....");
+                    results.put("OUTPUT", "");
                     publishProgress(results);
                     return (0);
                 }
 
-                if ((!isConnectedViaWifi() && (!Build.PRODUCT.matches(".*_?sdk_?.*")))) {
-                    results.put("OUTPUT", "Wifi is not enabled.");
-                    publishProgress(results);
-                    Intent refresh = new Intent(context, MainActivity.class);
-                    startActivity(refresh);//Start the same Activity
-                    finish(); //finish Activity.
-                    return (0);
-                }
                 //System.out.printf("%s (sleeptime: %d)\n", "calling status downloader", statussleeptime);
 
                 try {
@@ -338,7 +330,7 @@ public class MainActivity extends ActionBarActivity {
                         stream = u1.openStream();
                     } catch (Exception e) {
 
-                        results.put("OUTPUT", "Can't open stream to receiver. Please check your settings.\n");
+                        results.put("OUTPUT", "Can't open stream to receiver. \n-Wifi enabled?\n-Correct receiver IP in the settings?\n");
                         publishProgress(results);
                         return(1);
                     }
