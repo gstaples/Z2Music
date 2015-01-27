@@ -316,8 +316,9 @@ public class MainActivity extends ActionBarActivity {
                 }
 
                 if ((!isConnectedViaWifi() && (!Build.PRODUCT.matches(".*_?sdk_?.*")))) {
-                    results.put("OUTPUT", getString(R.string.nowifi));
-                    publishProgress(results);
+                    Intent refresh = new Intent(context, NoNetwork.class);
+                    startActivity(refresh);
+
                     return (0);
                 }
 
