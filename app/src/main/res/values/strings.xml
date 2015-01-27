@@ -24,6 +24,7 @@
     <string name="action_settings">Settings</string>
     <string name="button_receiverscanner">Scan Network for Receivers …</string>
     <string name="title_activity_no_network">Connection Failed</string>
+    <string name="nowifi">Wifi is not enabled.</string>
     <string name="power_off1">Power is Off</string>
     <string name="power_off2">Here\'s an idea&#8230;</string>
     <string name="power_off3">Push one of the giant buttons below!</string>

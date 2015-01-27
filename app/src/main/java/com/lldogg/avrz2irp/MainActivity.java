@@ -315,6 +315,12 @@ public class MainActivity extends ActionBarActivity {
                     // whatever, don't care
                 }
 
+                if ((!isConnectedViaWifi() && (!Build.PRODUCT.matches(".*_?sdk_?.*")))) {
+                    results.put("OUTPUT", getString(R.string.nowifi));
+                    publishProgress(results);
+                    return (0);
+                }
+
                 if (isCancelled()) {
                     results.put("OUTPUT", "");
                     publishProgress(results);
