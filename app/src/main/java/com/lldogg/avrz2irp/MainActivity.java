@@ -176,7 +176,7 @@ public class MainActivity extends ActionBarActivity {
         show_volume_controls = prefs.getBoolean("pref_showvolume", true);
         Button favbutton = (Button) findViewById(R.id.button_favorite);
         Button panbutton = (Button) findViewById(R.id.button_pandora);
-        LinearLayout vollayout = (LinearLayout) findViewById(R.id.volLayout);
+        //LinearLayout vollayout = (LinearLayout) findViewById(R.id.volLayout);
 
         if (show_favorites_button) {
             favbutton.setVisibility(View.VISIBLE);
@@ -278,7 +278,6 @@ public class MainActivity extends ActionBarActivity {
         new sendcmd().execute(makeUrl(z2irpCurRight));
     }
 
-    //FIXME: make this green when muted '<Mute><value>on</value></Mute>'
     public void irp_mute(View view) {
 
         new sendcmd().execute(makeUrl(z2irpVolMute));
@@ -335,8 +334,6 @@ public class MainActivity extends ActionBarActivity {
                         Intent refresh = new Intent(context, NoNetwork.class);
                         startActivity(refresh);
 
-                        results.put("OUTPUT", "Can't open stream to receiver. \n-Wifi enabled?\n-Correct receiver IP in the settings?\n");
-                        publishProgress(results);
                         return(1);
                     }
                     results = MyXMLparser.parse(stream, MyXMLparser.XMLP_MAINSTATUS);
@@ -358,8 +355,8 @@ public class MainActivity extends ActionBarActivity {
                     results.put("OUTPUT", "XML parse failed " + seconds);
                     publishProgress(results);
                 } catch (IOException e) {
-                    results.put("OUTPUT", "Unable to retrieve web page. Check the settings? Wifi enabled? Receiver on the network?");
-                    publishProgress(results);
+                    Intent refresh = new Intent(context, NoNetwork.class);
+                    startActivity(refresh);
                 }
             }
             return (1);
@@ -512,8 +509,10 @@ public class MainActivity extends ActionBarActivity {
 
                     navLayout.setVisibility(View.INVISIBLE);
                     volLayout.setVisibility(View.INVISIBLE);
-                    textView.setText("Power is Off\n\nHere's an idea...\n" +
-                            "Push one of the giant buttons below!\n");
+                    textView.setText(context.getString(R.string.power_off1) + "\n");
+                    textView.append(context.getString(R.string.power_off2) + "\n");
+                    textView.append(context.getString(R.string.power_off3) + "\n");
+
                 }
 
             } else if (values[0].get("OUTPUT") != null)  {
