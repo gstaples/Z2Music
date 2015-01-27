@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class NoNetwork extends ActionBarActivity {
@@ -14,7 +15,7 @@ public class NoNetwork extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_network);
-        EditText status = (EditText) findViewById(R.id.no_network_status);
+        TextView status = (TextView) findViewById(R.id.no_network_status);
         status.setText(this.getString(R.string.no_network1) + "\n");
         status.append(this.getString(R.string.no_network2) + "\n");
         status.append(this.getString(R.string.no_network3) + "\n");
