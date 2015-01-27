@@ -442,6 +442,9 @@ public class MainActivity extends ActionBarActivity {
 
             if (values[0].get("OUTPUT") != null && values[0].get("OUTPUT").contains("Connection failed.")) {
                 textView.setText(values[0].get("OUTPUT"));
+                volLayout.setVisibility(View.GONE);
+                navLayout.setVisibility(View.GONE);
+                shortCutLayout.setVisibility(View.GONE);
 
                 RelativeLayout statuslayout = (RelativeLayout) findViewById(R.id.status_layout);
                 RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -540,6 +543,7 @@ public class MainActivity extends ActionBarActivity {
 
                     navLayout.setVisibility(View.INVISIBLE);
                     volLayout.setVisibility(View.INVISIBLE);
+                    shortCutLayout.setVisibility(View.VISIBLE);
                     textView.setText(context.getString(R.string.power_off1) + "\n");
                     textView.append(context.getString(R.string.power_off2) + "\n");
                     textView.append(context.getString(R.string.power_off3) + "\n");
