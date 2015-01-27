@@ -24,6 +24,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -316,8 +317,22 @@ public class MainActivity extends ActionBarActivity {
                 }
 
                 if ((!isConnectedViaWifi() && (!Build.PRODUCT.matches(".*_?sdk_?.*")))) {
-                    Intent refresh = new Intent(context, NoNetwork.class);
-                    startActivity(refresh);
+                    results.put("OUTPUT", "Wifi is not enabled.");
+                    publishProgress(results);
+
+                    RelativeLayout statuslayout = (RelativeLayout) findViewById(R.id.status_layout);
+                    Button btn = new Button(context);
+                    btn.setId(56);
+                    btn.setText("Try again");
+                    btn.setOnClickListener((new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(context,MainActivity.class);
+                            context.startActivity(intent);
+                            finish();
+                        }
+                    }));
+                    statuslayout.addView(btn);
 
                     return (0);
                 }
@@ -338,8 +353,22 @@ public class MainActivity extends ActionBarActivity {
                         stream = u1.openStream();
                     } catch (Exception e) {
 
-                        Intent refresh = new Intent(context, NoNetwork.class);
-                        startActivity(refresh);
+                        results.put("OUTPUT", "Connection failed.");
+                        publishProgress(results);
+
+                        RelativeLayout statuslayout = (RelativeLayout) findViewById(R.id.status_layout);
+                        Button btn = new Button(context);
+                        btn.setId(56);
+                        btn.setText("Try again");
+                        btn.setOnClickListener((new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context,MainActivity.class);
+                                context.startActivity(intent);
+                                finish();
+                            }
+                        }));
+                        statuslayout.addView(btn);
 
                         return(1);
                     }
