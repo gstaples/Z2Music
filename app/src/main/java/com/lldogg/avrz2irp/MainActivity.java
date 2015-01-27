@@ -327,7 +327,7 @@ public class MainActivity extends ActionBarActivity {
                     btn.setOnClickListener((new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(context,MainActivity.class);
+                            Intent intent = new Intent(context, MainActivity.class);
                             context.startActivity(intent);
                             finish();
                         }
@@ -357,17 +357,20 @@ public class MainActivity extends ActionBarActivity {
                         publishProgress(results);
 
                         RelativeLayout statuslayout = (RelativeLayout) findViewById(R.id.status_layout);
+                        RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                         Button btn = new Button(context);
                         btn.setId(56);
                         btn.setText("Try again");
-                        btn.setOnClickListener((new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(context,MainActivity.class);
-                                context.startActivity(intent);
-                                finish();
-                            }
-                        }));
+                        param.addRule(RelativeLayout.BELOW,R.id.edit_message);
+                        btn.setLayoutParams(param);
+                                btn.setOnClickListener((new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(context, MainActivity.class);
+                                        context.startActivity(intent);
+                                        finish();
+                                    }
+                                }));
                         statuslayout.addView(btn);
 
                         return(1);
