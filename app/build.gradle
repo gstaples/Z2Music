@@ -7,9 +7,7 @@ android {
     signingConfigs {
         config {
             keyAlias 'MyKey'
-            keyPassword 'enter:show'
             storeFile file('/Users/Garrick/keystore.jks')
-            storePassword 'enter:show'
         }
     }
     compileSdkVersion 21
