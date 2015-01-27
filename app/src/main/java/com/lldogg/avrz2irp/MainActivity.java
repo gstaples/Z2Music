@@ -402,6 +402,7 @@ public class MainActivity extends ActionBarActivity {
             boolean ShowShortcutsOrNot;
             boolean IsVolumeCompact;
             boolean UseLargeText;
+            boolean IsVolumeShort;
 
                 // maybe
                 if ((getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT) &&
@@ -411,13 +412,15 @@ public class MainActivity extends ActionBarActivity {
                     IsVolumeCompact=true;
                     UseLargeText=false;
                     ShowShortcutsOrNot=true;
+                    IsVolumeShort=false;
                 } else if ((getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE) &&
                         (height < 600)) {
-                    // small screen, landscape, full volume controls, but hide showrtcuts
+                    // small screen, landscape, full volume controls, but hide shortcuts
                     ShowVolumeOrNot=true;
                     IsVolumeCompact=false;
                     UseLargeText=false;
                     ShowShortcutsOrNot=false;
+                    IsVolumeShort=true;
                 } else if ((getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT) &&
                         (width >= 600)) {
                     // larger screen, portrait, full volume controls
@@ -425,12 +428,14 @@ public class MainActivity extends ActionBarActivity {
                     IsVolumeCompact=false;
                     UseLargeText=true;
                     ShowShortcutsOrNot=true;
+                    IsVolumeShort=false;
                 } else {
                     // larger screen, landscape, full volume controls
                     ShowVolumeOrNot=true;
                     IsVolumeCompact=false;
                     UseLargeText=true;
                     ShowShortcutsOrNot=true;
+                    IsVolumeShort=false;
                 }
 
             if (!show_volume_controls) {
@@ -485,6 +490,7 @@ public class MainActivity extends ActionBarActivity {
                     if (ShowVolumeOrNot) {
                         Button volbutton1 = (Button) findViewById(R.id.button_volup);
                         Button volbutton2 = (Button) findViewById(R.id.button_voldown);
+                        TextView vollabel = (TextView) findViewById(R.id.label_volume);
 
                         volLayout.setVisibility(View.VISIBLE);
 
@@ -494,6 +500,11 @@ public class MainActivity extends ActionBarActivity {
                         } else {
                             volbutton1.setVisibility(View.VISIBLE);
                             volbutton2.setVisibility(View.VISIBLE);
+                        }
+                        if (IsVolumeShort) {
+                            vollabel.setVisibility(View.GONE);
+                        } else {
+                            vollabel.setVisibility(View.VISIBLE);
                         }
                     } else {
                         volLayout.setVisibility(View.GONE);
