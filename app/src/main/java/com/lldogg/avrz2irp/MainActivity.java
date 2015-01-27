@@ -317,22 +317,10 @@ public class MainActivity extends ActionBarActivity {
                 }
 
                 if ((!isConnectedViaWifi() && (!Build.PRODUCT.matches(".*_?sdk_?.*")))) {
-                    results.put("OUTPUT", "Wifi is not enabled.");
+                    results.put("OUTPUT", "Connection failed. Wifi is not enabled.");
                     publishProgress(results);
 
-                    RelativeLayout statuslayout = (RelativeLayout) findViewById(R.id.status_layout);
-                    Button btn = new Button(context);
-                    btn.setId(56);
-                    btn.setText("Try again");
-                    btn.setOnClickListener((new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(context, MainActivity.class);
-                            context.startActivity(intent);
-                            finish();
-                        }
-                    }));
-                    statuslayout.addView(btn);
+
 
                     return (0);
                 }
@@ -353,25 +341,8 @@ public class MainActivity extends ActionBarActivity {
                         stream = u1.openStream();
                     } catch (Exception e) {
 
-                        results.put("OUTPUT", "Connection failed.");
+                        results.put("OUTPUT", "Connection failed. Check your settings.");
                         publishProgress(results);
-
-                        RelativeLayout statuslayout = (RelativeLayout) findViewById(R.id.status_layout);
-                        RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                        Button btn = new Button(context);
-                        btn.setId(56);
-                        btn.setText("Try again");
-                        param.addRule(RelativeLayout.BELOW,R.id.edit_message);
-                        btn.setLayoutParams(param);
-                                btn.setOnClickListener((new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent intent = new Intent(context, MainActivity.class);
-                                        context.startActivity(intent);
-                                        finish();
-                                    }
-                                }));
-                        statuslayout.addView(btn);
 
                         return(1);
                     }
@@ -394,8 +365,9 @@ public class MainActivity extends ActionBarActivity {
                     results.put("OUTPUT", "XML parse failed " + seconds);
                     publishProgress(results);
                 } catch (IOException e) {
-                    Intent refresh = new Intent(context, NoNetwork.class);
-                    startActivity(refresh);
+                    results.put("OUTPUT", "Connection failed. Check your settings.");
+                    publishProgress(results);
+
                 }
             }
             return (1);
@@ -467,7 +439,27 @@ public class MainActivity extends ActionBarActivity {
                 IsVolumeCompact=false;
 
             }
-            if (values[0].get("POWER") != null) {
+
+            if (values[0].get("OUTPUT") != null && values[0].get("OUTPUT").contains("Connection failed.")) {
+                textView.setText(values[0].get("OUTPUT"));
+
+                RelativeLayout statuslayout = (RelativeLayout) findViewById(R.id.status_layout);
+                RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                Button btn = new Button(context);
+                btn.setId(56);
+                btn.setText("Try again");
+                param.addRule(RelativeLayout.BELOW,R.id.edit_message);
+                btn.setLayoutParams(param);
+                btn.setOnClickListener((new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }));
+                statuslayout.addView(btn);
+            } else if (values[0].get("POWER") != null) {
                 if (values[0].get("POWER").equals("ON")) {
                     // make button for power off
 
