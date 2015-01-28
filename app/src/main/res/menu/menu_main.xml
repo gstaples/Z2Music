@@ -6,9 +6,9 @@
         android:icon="@drawable/power_off"
         android:title="Power"
         android:showAsAction="ifRoom" /> -->
-    <item android:id="@+id/action_favorites" android:title="Favorites"
+    <item android:id="@+id/action_favorites" android:title="@string/favorites"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_pandora" android:title="Pandora"
+    <item android:id="@+id/action_pandora" android:title="@string/pandora"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_settings" android:title="@string/title_activity_settings"
         android:orderInCategory="100" app:showAsAction="never" />

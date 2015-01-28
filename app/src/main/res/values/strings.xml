@@ -23,7 +23,6 @@
     <string name="title_activity_marantz_scanner">Looking &#8230;</string>
     <string name="action_settings">Settings</string>
     <string name="button_receiverscanner">Scan Network for Receivers …</string>
-    <string name="title_activity_no_network">Connection Failed</string>
     <string name="nowifi">Wifi is not enabled.</string>
     <string name="power_off1">Power is Off</string>
     <string name="power_off2">Here\'s an idea&#8230;</string>
@@ -32,5 +31,10 @@
     <string name="no_network2"> -Wifi enabled?</string>
     <string name="no_network3"> -Correct receiver IP in the settings?</string>string>
     <string name="no_network4"> -Network Control enabled in your receiver\'s settings?</string>string>
+    <string name="reload">Reload &#8230;</string>
+    <string name="pandora">Pandora</string>
+    <string name="favorites">Favorites</string>
+    <string name="volume">Volume</string>
+    <string name="connfailed">Connection Failed.</string>
 
 </resources>

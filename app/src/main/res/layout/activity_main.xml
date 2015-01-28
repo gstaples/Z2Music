@@ -34,8 +34,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginRight="15dp"
             android:layout_marginTop="15dp"
-            android:enabled="false"
-            android:onClick="irp_poweroff" />
+            android:enabled="false"/>
     </RelativeLayout>
 
 
@@ -53,6 +52,7 @@
 
         <Button
             android:id="@+id/button_back"
+            android:contentDescription="@string/button_back"
             android:layout_width="75dp"
             android:layout_height="30dp"
             android:layout_marginRight="5dp"
@@ -64,6 +64,7 @@
 
         <ImageButton
             android:id="@+id/button_up"
+            android:contentDescription="@string/button_up"
             android:layout_width="75dp"
             android:layout_height="30dp"
             android:layout_marginRight="5dp"
@@ -75,6 +76,7 @@
 
         <ImageButton
             android:id="@+id/button_down"
+            android:contentDescription="@string/button_down"
             android:layout_width="75dp"
             android:layout_height="30dp"
             android:layout_marginRight="5dp"
@@ -86,6 +88,7 @@
 
         <ImageButton
             android:id="@+id/button_right"
+            android:contentDescription="@string/button_right"
             android:layout_width="75dp"
             android:layout_height="30dp"
             android:layout_weight="1"
@@ -109,7 +112,7 @@
 
         <TextView
             android:id="@+id/vol_level"
-            android:layout_width="75dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1" />
@@ -132,7 +135,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Volume"
+            android:text="@string/volume"
             android:textColor="#ffffff"
             android:textSize="20sp" />
 
@@ -147,6 +150,7 @@
 
             <ImageButton
                 android:id="@+id/button_mute"
+                android:contentDescription="@string/button_mute"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
@@ -216,7 +220,7 @@
             android:layout_weight="1"
             android:background="@drawable/styled_button"
             android:onClick="irp_favorites"
-            android:text="Favorites"
+            android:text="@string/favorites"
             android:visibility="gone" />
 
         <Button
@@ -227,7 +231,7 @@
             android:layout_weight="1"
             android:background="@drawable/styled_button"
             android:onClick="irp_pandora"
-            android:text="Pandora"
+            android:text="@string/pandora"
             android:visibility="gone" />
 
     </LinearLayout>

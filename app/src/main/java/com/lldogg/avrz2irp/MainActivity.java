@@ -76,8 +76,6 @@ public class MainActivity extends ActionBarActivity {
     //private AudioManager am;
     private SeekBar volumeControl = null;
 
-    private boolean show_favorites_button;
-    private boolean show_pandora_button;
     private boolean show_volume_controls;
 
 
@@ -172,8 +170,8 @@ public class MainActivity extends ActionBarActivity {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        show_favorites_button = prefs.getBoolean("pref_showfavorites", true);
-        show_pandora_button = prefs.getBoolean("pref_showpandora", true);
+        boolean show_favorites_button = prefs.getBoolean("pref_showfavorites", true);
+        boolean show_pandora_button = prefs.getBoolean("pref_showpandora", true);
         show_volume_controls = prefs.getBoolean("pref_showvolume", true);
         Button favbutton = (Button) findViewById(R.id.button_favorite);
         Button panbutton = (Button) findViewById(R.id.button_pandora);
@@ -247,11 +245,7 @@ public class MainActivity extends ActionBarActivity {
         new sendcmd().execute(makeUrl(z2irpstop),
                 makeUrl(z2pwroff));
     }
-    void irp_power_toggle() {
-
-        new sendcmd().execute(makeUrl(z2irpstop),
-                makeUrl(z2pwroff));
-    }
+ 
     void irp_poweron(View view) {
         view.startAnimation(animAlpha2);
 
@@ -317,7 +311,7 @@ public class MainActivity extends ActionBarActivity {
                 }
 
                 if ((!isConnectedViaWifi() && (!Build.PRODUCT.matches(".*_?sdk_?.*")))) {
-                    results.put("OUTPUT", "Connection failed. Wifi is not enabled.");
+                    results.put("OUTPUT", getString(R.string.connfailed)+ " "+getString(R.string.nowifi));
                     publishProgress(results);
 
 
@@ -341,7 +335,7 @@ public class MainActivity extends ActionBarActivity {
                         stream = u1.openStream();
                     } catch (Exception e) {
 
-                        results.put("OUTPUT", "Connection failed. Check your settings.");
+                        results.put("OUTPUT", getString(R.string.connfailed));
                         publishProgress(results);
 
                         return(1);
@@ -365,7 +359,7 @@ public class MainActivity extends ActionBarActivity {
                     results.put("OUTPUT", "XML parse failed " + seconds);
                     publishProgress(results);
                 } catch (IOException e) {
-                    results.put("OUTPUT", "Connection failed. Check your settings.");
+                    results.put("OUTPUT", getString(R.string.connfailed));
                     publishProgress(results);
 
                 }
@@ -445,8 +439,12 @@ public class MainActivity extends ActionBarActivity {
 
             }
 
-            if (values[0].get("OUTPUT") != null && values[0].get("OUTPUT").contains("Connection failed.")) {
+            if (values[0].get("OUTPUT") != null && values[0].get("OUTPUT").contains(getString(R.string.connfailed))) {
                 textView.setText(values[0].get("OUTPUT"));
+                textView.append(getString(R.string.no_network1)+"\n");
+                textView.append(getString(R.string.no_network2)+"\n");
+                textView.append(getString(R.string.no_network3)+"\n");
+                textView.append(getString(R.string.no_network4)+"\n");
                 volLayout.setVisibility(View.GONE);
                 navLayout.setVisibility(View.GONE);
                 shortCutLayout.setVisibility(View.GONE);
@@ -454,8 +452,7 @@ public class MainActivity extends ActionBarActivity {
                 RelativeLayout statuslayout = (RelativeLayout) findViewById(R.id.status_layout);
                 RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 Button btn = new Button(context);
-                btn.setId(56);
-                btn.setText("Try again");
+                btn.setText(getString(R.string.reload));
                 param.addRule(RelativeLayout.BELOW,R.id.edit_message);
                 btn.setLayoutParams(param);
                 btn.setOnClickListener((new View.OnClickListener() {
@@ -555,9 +552,9 @@ public class MainActivity extends ActionBarActivity {
                     navLayout.setVisibility(View.INVISIBLE);
                     volLayout.setVisibility(View.INVISIBLE);
                     shortCutLayout.setVisibility(View.VISIBLE);
-                    textView.setText(context.getString(R.string.power_off1) + "\n");
-                    textView.append(context.getString(R.string.power_off2) + "\n");
-                    textView.append(context.getString(R.string.power_off3) + "\n");
+                    textView.setText(getString(R.string.power_off1) + "\n");
+                    textView.append(getString(R.string.power_off2) + "\n");
+                    textView.append(getString(R.string.power_off3) + "\n");
 
                 }
 
@@ -661,7 +658,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
+    public String readIt(InputStream stream, int len) throws IOException {
         Reader reader;
         reader = new InputStreamReader(stream, "UTF-8");
         char[] buffer = new char[len];
