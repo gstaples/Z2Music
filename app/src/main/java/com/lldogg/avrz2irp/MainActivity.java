@@ -210,6 +210,7 @@ public class MainActivity extends ActionBarActivity {
         return "http://" + ipaddr + ":" + port + cmd;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void action_favorites() {
 
         new sendcmd().execute(makeUrl(z2pwron),
@@ -217,6 +218,7 @@ public class MainActivity extends ActionBarActivity {
                 makeUrl(z2irpCurRight));
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void action_pandora() {
 
         new sendcmd().execute(makeUrl(z2pwron),
@@ -253,35 +255,35 @@ public class MainActivity extends ActionBarActivity {
     }
 
     // cursor direction commands
-    public void irp_back(View view) {
+    public void irp_back(@SuppressWarnings("UnusedParameters") View view) {
 
         new sendcmd().execute(makeUrl(z2irpCurLeft));
     }
 
-    public void irp_up(View view) {
+    public void irp_up(@SuppressWarnings("UnusedParameters") View view) {
 
         new sendcmd().execute(makeUrl(z2irpCurUp));
     }
 
-    public void irp_down(View view) {
+    public void irp_down(@SuppressWarnings("UnusedParameters") View view) {
 
         new sendcmd().execute(makeUrl(z2irpCurDown));
     }
 
-    public void irp_right(View view) {
+    public void irp_right(@SuppressWarnings("UnusedParameters") View view) {
 
         new sendcmd().execute(makeUrl(z2irpCurRight));
     }
 
-    public void irp_mute(View view) {
+    public void irp_mute(@SuppressWarnings("UnusedParameters") View view) {
 
         new sendcmd().execute(makeUrl(z2irpVolMute));
     }
-    public void irp_voldown(View view) {
+    public void irp_voldown(@SuppressWarnings("UnusedParameters") View view) {
 
         new sendcmd().execute(makeUrl(z2irpVolDown));
     }
-    public void irp_volup(View view) {
+    public void irp_volup(@SuppressWarnings("UnusedParameters") View view) {
 
         new sendcmd().execute(makeUrl(z2irpVolUp));
     }
@@ -516,12 +518,14 @@ public class MainActivity extends ActionBarActivity {
 
                     if (values[0].get("MASTERVOLUME") != null) {
                         String volstring = values[0].get("MASTERVOLUME").replaceAll("\\s","");
-                        int volume = Integer.parseInt(volstring);
-                        volume += 80;
+                        try {
+                            int volume = Integer.parseInt(volstring);
+                            volume += 80;
 
-                        volView = (TextView) findViewById(R.id.vol_level);
-                        volView.setText(Integer.toString(volume));
-                        volumeControl.setProgress(volume);
+                            volView = (TextView) findViewById(R.id.vol_level);
+                            volView.setText(Integer.toString(volume));
+                            volumeControl.setProgress(volume);
+                        } catch (NumberFormatException e) {}
                     }
                     if (values[0].get("MUTE") != null) {
                         if (values[0].get("MUTE").equals("off")) {

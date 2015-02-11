@@ -15,6 +15,7 @@ android {
     defaultConfig {
         // Fetch the version according to git latest tag and "how far are we from last tag"
         def longVersionName = "git -C ${rootDir} describe --tags --long".execute().text.trim()
+        //noinspection GroovyUnusedAssignment
         def (fullVersionTag, versionBuild, gitSha) = longVersionName.tokenize('-')
         def(versionMajor, versionMinor, versionPatch) = fullVersionTag.tokenize('.')
 

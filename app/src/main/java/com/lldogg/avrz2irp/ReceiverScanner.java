@@ -31,6 +31,7 @@ public class ReceiverScanner extends ActionBarActivity {
     private LinearLayout scannerLayout;
     private Context context;
     private static int currentIP = 0;
+    @SuppressWarnings("CanBeFinal")
     private static ArrayList<String> servers = new ArrayList<>();
     private scan scantask;
 

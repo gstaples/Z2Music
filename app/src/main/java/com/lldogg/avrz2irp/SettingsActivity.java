@@ -108,6 +108,7 @@ public class SettingsActivity extends PreferenceActivity {
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
+    @SuppressWarnings("CanBeFinal")
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
@@ -179,7 +180,7 @@ public class SettingsActivity extends PreferenceActivity {
         }
     }
 
-    public void irp_scan(View view) {
+    public void irp_scan(@SuppressWarnings("UnusedParameters") View view) {
         Intent intent = new Intent(this, ReceiverScanner.class);
         startActivityForResult(intent, FIND_RECEIVER_IP);
 
